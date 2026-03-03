@@ -199,7 +199,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
                   icon: Factory,
                   color: "text-orange-500",
                   bg: "bg-orange-100",
-                  label: "Factory A",
+                  label: "Factory",
                   delay: 0,
                 },
                 {
