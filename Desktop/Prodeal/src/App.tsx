@@ -137,8 +137,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
               </span>
             </h1>
             <p className="text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed max-w-xl">
-              We connect overseas e-commerce merchants with verified,
-              high-quality manufacturing partners to scale your business.
+              Backed by our family-owned cargo ship company, we offer unparalleled logistics advantages. We connect overseas e-commerce merchants with verified, high-quality manufacturing partners to scale your business seamlessly.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
@@ -148,10 +147,6 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
                   size={18}
                   className="group-hover:translate-x-1 transition-transform"
                 />
-              </button>
-              <button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 px-8 py-4 rounded-full text-base font-medium transition-all flex items-center justify-center gap-2">
-                <PlayCircle size={20} className="text-slate-400" />
-                View Pricing
               </button>
             </div>
 
