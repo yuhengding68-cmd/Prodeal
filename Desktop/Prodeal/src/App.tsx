@@ -18,13 +18,13 @@ import {
 
 const Logo = ({ theme = "light" }: { theme?: "light" | "dark" }) => {
   const textColor = theme === "light" ? "text-slate-900" : "text-white";
-  
+
   return (
     <div className="flex items-center gap-2.5">
       <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-500/25">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-           <path d="M6 4h7a5 5 0 0 1 0 10H6V4z" />
-           <path d="M6 14v6" />
+          <path d="M6 4h7a5 5 0 0 1 0 10H6V4z" />
+          <path d="M6 14v6" />
         </svg>
       </div>
       <span className={`text-xl font-bold tracking-tight ${textColor}`}>
@@ -142,7 +142,7 @@ const Hero = ({ onOpenModal }: { onOpenModal: () => void }) => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <button onClick={onOpenModal} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-base font-medium transition-all shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 group">
+              <button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-full text-base font-medium transition-all shadow-lg shadow-purple-600/25 flex items-center justify-center gap-2 group">
                 Find a Factory
                 <ArrowRight
                   size={18}
@@ -316,12 +316,12 @@ const Stats = () => {
 
   return (
     <section className="py-12 bg-white border-y border-slate-100 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 8, repeat: Infinity }}
         className="absolute top-0 left-1/4 w-64 h-64 bg-purple-400/30 rounded-full blur-3xl -translate-y-1/2 pointer-events-none"
       ></motion.div>
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 8, repeat: Infinity, delay: 4 }}
         className="absolute bottom-0 right-1/4 w-64 h-64 bg-indigo-400/30 rounded-full blur-3xl translate-y-1/2 pointer-events-none"
@@ -385,12 +385,12 @@ const Features = () => {
 
   return (
     <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
         className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-purple-400/10 rounded-full blur-[100px] -translate-x-1/2 pointer-events-none"
       ></motion.div>
-      <motion.div 
+      <motion.div
         animate={{ rotate: -360 }}
         transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
         className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-400/10 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"
@@ -466,7 +466,7 @@ const Process = () => {
   return (
     <section id="process" className="py-24 bg-white relative overflow-hidden">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay pointer-events-none"></div>
-      <motion.div 
+      <motion.div
         animate={{ scale: [1, 1.1, 1] }}
         transition={{ duration: 10, repeat: Infinity }}
         className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-emerald-400/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"
@@ -610,12 +610,12 @@ const CaseStudies = () => {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <motion.div 
+        <motion.div
           animate={{ x: [0, 50, 0], y: [0, -50, 0] }}
           transition={{ duration: 20, repeat: Infinity }}
           className="absolute top-0 right-1/4 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl"
         ></motion.div>
-        <motion.div 
+        <motion.div
           animate={{ x: [0, -50, 0], y: [0, 50, 0] }}
           transition={{ duration: 15, repeat: Infinity }}
           className="absolute bottom-0 left-1/4 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl"
@@ -626,10 +626,10 @@ const CaseStudies = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Real Results for Real Brands</h2>
           <p className="text-lg text-slate-600">See how we help businesses lower costs and solve complex logistics challenges.</p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           {cases.map((item, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -638,9 +638,9 @@ const CaseStudies = () => {
               className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 hover:shadow-xl transition-all duration-300"
             >
               <div className="aspect-video overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
+                <img
+                  src={item.image}
+                  alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
@@ -702,7 +702,7 @@ const Testimonials = () => {
 
   return (
     <section className="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.1, 1] }}
         transition={{ duration: 8, repeat: Infinity }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-tr from-purple-400/10 to-indigo-400/10 rounded-full blur-[100px] pointer-events-none"
@@ -712,10 +712,10 @@ const Testimonials = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Trusted by E-commerce Leaders</h2>
           <p className="text-lg text-slate-600">Don't just take our word for it. Here's what our partners have to say.</p>
         </div>
-        
+
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {reviews.map((review, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -730,9 +730,9 @@ const Testimonials = () => {
               </div>
               <p className="text-slate-600 mb-6 flex-1 text-sm leading-relaxed">"{review.content}"</p>
               <div className="flex items-center gap-3 mt-auto">
-                <img 
-                  src={review.image} 
-                  alt={review.name} 
+                <img
+                  src={review.image}
+                  alt={review.name}
                   className="w-10 h-10 rounded-full object-cover border border-slate-100"
                   referrerPolicy="no-referrer"
                 />
@@ -751,11 +751,11 @@ const Testimonials = () => {
 
 const LegalModal = ({ isOpen, onClose, title, content }: { isOpen: boolean, onClose: () => void, title: string, content: React.ReactNode }) => {
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
       <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={onClose}></div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -778,12 +778,12 @@ const LegalModal = ({ isOpen, onClose, title, content }: { isOpen: boolean, onCl
 const Footer = ({ onOpenTerms, onOpenPrivacy }: { onOpenTerms: () => void, onOpenPrivacy: () => void }) => {
   return (
     <footer className="bg-slate-900 text-slate-300 py-12 border-t border-slate-800 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 4, repeat: Infinity }}
         className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent opacity-50 pointer-events-none"
       ></motion.div>
-      <motion.div 
+      <motion.div
         animate={{ opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 6, repeat: Infinity }}
         className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-purple-500/20 rounded-full blur-[100px] pointer-events-none"
@@ -799,14 +799,14 @@ const Footer = ({ onOpenTerms, onOpenPrivacy }: { onOpenTerms: () => void, onOpe
               business with confidence.
             </p>
           </div>
-          
+
           <div className="flex gap-6 text-sm text-slate-400">
             <button onClick={onOpenTerms} className="hover:text-white transition-colors">Terms</button>
             <button onClick={onOpenPrivacy} className="hover:text-white transition-colors">Privacy</button>
             <a href="mailto:contact@prodeal.com" className="hover:text-white transition-colors">Contact</a>
           </div>
         </div>
-        
+
         <div className="pt-8 mt-8 border-t border-slate-800 text-sm text-slate-500 flex flex-col md:flex-row justify-center items-center gap-4">
           <p>© {new Date().getFullYear()} Prodeal. All rights reserved.</p>
         </div>
@@ -818,7 +818,7 @@ const Footer = ({ onOpenTerms, onOpenPrivacy }: { onOpenTerms: () => void, onOpe
 const Pricing = ({ onSelectPlan }: { onSelectPlan: (plan: string) => void }) => {
   return (
     <section id="pricing" className="py-24 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
-      <motion.div 
+      <motion.div
         animate={{ opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 5, repeat: Infinity }}
         className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-purple-400/10 rounded-[100%] blur-[80px] -translate-y-1/2 pointer-events-none"
@@ -838,9 +838,9 @@ const Pricing = ({ onSelectPlan }: { onSelectPlan: (plan: string) => void }) => 
             </div>
             <p className="text-slate-600 mb-8">Perfect for getting started and understanding the sourcing landscape.</p>
             <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20}/><span>30-minute expert consultation</span></li>
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20}/><span>Initial factory matching</span></li>
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20}/><span>Basic market analysis</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20} /><span>30-minute expert consultation</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20} /><span>Initial factory matching</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-500 shrink-0" size={20} /><span>Basic market analysis</span></li>
             </ul>
             <button onClick={() => onSelectPlan('Basic $39')} className="w-full py-4 rounded-xl font-bold text-purple-600 bg-purple-50 hover:bg-purple-100 transition-colors">
               Choose Basic
@@ -858,10 +858,10 @@ const Pricing = ({ onSelectPlan }: { onSelectPlan: (plan: string) => void }) => 
             </div>
             <p className="text-purple-100 mb-8">Comprehensive sourcing strategy and direct factory connections.</p>
             <ul className="space-y-4 mb-8 flex-1">
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20}/><span className="text-purple-50">Deep-dive consultation</span></li>
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20}/><span className="text-purple-50">Direct introduction to 3-5 verified factories</span></li>
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20}/><span className="text-purple-50">Detailed cost breakdown & logistics plan</span></li>
-              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20}/><span className="text-purple-50">Priority email support</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20} /><span className="text-purple-50">Deep-dive consultation</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20} /><span className="text-purple-50">Direct introduction to 3-5 verified factories</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20} /><span className="text-purple-50">Detailed cost breakdown & logistics plan</span></li>
+              <li className="flex items-start gap-3"><CheckCircle2 className="text-purple-300 shrink-0" size={20} /><span className="text-purple-50">Priority email support</span></li>
             </ul>
             <button onClick={() => onSelectPlan('Premium $129')} className="w-full py-4 rounded-xl font-bold text-purple-600 bg-white hover:bg-slate-50 transition-colors shadow-lg">
               Choose Premium
@@ -875,11 +875,11 @@ const Pricing = ({ onSelectPlan }: { onSelectPlan: (plan: string) => void }) => 
 
 const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onClose: () => void, selectedPlan: string }) => {
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
       <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={onClose}></div>
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -894,10 +894,10 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
             <X size={24} />
           </button>
         </div>
-        
+
         <div className="p-6 sm:p-8 overflow-y-auto">
-          <form className="space-y-5" onSubmit={async (e) => { 
-            e.preventDefault(); 
+          <form className="space-y-5" onSubmit={async (e) => {
+            e.preventDefault();
             const formData = new FormData(e.currentTarget);
             const name = formData.get('name') as string;
             const birthday = formData.get('birthday') as string;
@@ -946,7 +946,7 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
               <label className="block text-sm font-medium text-slate-700 mb-1.5">Email Address</label>
               <input name="email" required type="email" placeholder="you@example.com" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" />
             </div>
-            
+
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">WhatsApp Number</label>
               <input name="whatsapp" required type="text" placeholder="+1 234 567 890" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all" />
@@ -956,7 +956,7 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
               <label className="block text-sm font-medium text-slate-700 mb-1.5">Problem Description</label>
               <textarea name="description" required placeholder="Please describe your sourcing needs or challenges..." rows={4} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 outline-none transition-all resize-none" />
             </div>
-            
+
             <div className="pt-4">
               <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-600/25 transition-all flex items-center justify-center gap-2">
                 Proceed to Payment <ArrowRight size={18} />
@@ -1004,19 +1004,19 @@ export default function App() {
       </div>
 
       <Navbar onOpenModal={() => openModal()} />
-      
+
       {paymentStatus === 'success' && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-emerald-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 animate-in slide-in-from-top-4">
           <CheckCircle2 size={20} />
           <span className="font-medium">Payment successful! We'll be in touch shortly.</span>
-          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-emerald-200"><X size={16}/></button>
+          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-emerald-200"><X size={16} /></button>
         </div>
       )}
-      
+
       {paymentStatus === 'canceled' && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-orange-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 animate-in slide-in-from-top-4">
           <span className="font-medium">Payment was canceled. You can try again when you're ready.</span>
-          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-orange-200"><X size={16}/></button>
+          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-orange-200"><X size={16} /></button>
         </div>
       )}
 
@@ -1030,10 +1030,10 @@ export default function App() {
 
       <AnimatePresence>
         {isModalOpen && (
-          <PaymentModal 
-            isOpen={isModalOpen} 
-            onClose={() => setIsModalOpen(false)} 
-            selectedPlan={selectedPlan} 
+          <PaymentModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            selectedPlan={selectedPlan}
           />
         )}
         {isTermsOpen && (
@@ -1043,11 +1043,11 @@ export default function App() {
             title="Terms of Service"
             content={
               <>
-                <p><strong>1. Acceptance of Terms</strong><br/>By accessing and using Prodeal's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
-                <p><strong>2. Services Description</strong><br/>Prodeal provides B2B sourcing consultation and factory matching services. We connect merchants with manufacturing partners in China. We act as a facilitator and consultant, not as the manufacturer.</p>
-                <p><strong>3. User Responsibilities</strong><br/>You agree to provide accurate information regarding your product requirements and business details. You are responsible for final approval of samples and production quality standards.</p>
-                <p><strong>4. Payment Terms</strong><br/>Consultation fees are non-refundable once the service has commenced. Payment is processed securely via Stripe. Additional manufacturing costs are separate and paid directly to factories or via our escrow service as agreed.</p>
-                <p><strong>5. Limitation of Liability</strong><br/>Prodeal is not liable for manufacturing defects, shipping delays, or intellectual property disputes arising from your engagement with third-party factories, though we strive to vet all partners rigorously.</p>
+                <p><strong>1. Acceptance of Terms</strong><br />By accessing and using Prodeal's services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                <p><strong>2. Services Description</strong><br />Prodeal provides B2B sourcing consultation and factory matching services. We connect merchants with manufacturing partners in China. We act as a facilitator and consultant, not as the manufacturer.</p>
+                <p><strong>3. User Responsibilities</strong><br />You agree to provide accurate information regarding your product requirements and business details. You are responsible for final approval of samples and production quality standards.</p>
+                <p><strong>4. Payment Terms</strong><br />Consultation fees are non-refundable once the service has commenced. Payment is processed securely via Stripe. Additional manufacturing costs are separate and paid directly to factories or via our escrow service as agreed.</p>
+                <p><strong>5. Limitation of Liability</strong><br />Prodeal is not liable for manufacturing defects, shipping delays, or intellectual property disputes arising from your engagement with third-party factories, though we strive to vet all partners rigorously.</p>
               </>
             }
           />
@@ -1059,11 +1059,11 @@ export default function App() {
             title="Privacy Policy"
             content={
               <>
-                <p><strong>1. Information Collection</strong><br/>We collect information you provide directly to us, such as your name, email address, phone number, and product requirements when you fill out our consultation forms.</p>
-                <p><strong>2. Use of Information</strong><br/>We use your information to provide sourcing services, communicate with you about your projects, and match you with suitable manufacturing partners.</p>
-                <p><strong>3. Data Protection</strong><br/>We implement security measures to maintain the safety of your personal information. We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent, except to trusted partners who assist us in operating our website or conducting our business.</p>
-                <p><strong>4. Third-Party Services</strong><br/>We use Stripe for payment processing. Your payment information is processed securely by Stripe and is subject to their privacy policy and terms of service.</p>
-                <p><strong>5. Contact Us</strong><br/>If you have any questions about this Privacy Policy, please contact us at contact@prodeal.com.</p>
+                <p><strong>1. Information Collection</strong><br />We collect information you provide directly to us, such as your name, email address, phone number, and product requirements when you fill out our consultation forms.</p>
+                <p><strong>2. Use of Information</strong><br />We use your information to provide sourcing services, communicate with you about your projects, and match you with suitable manufacturing partners.</p>
+                <p><strong>3. Data Protection</strong><br />We implement security measures to maintain the safety of your personal information. We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent, except to trusted partners who assist us in operating our website or conducting our business.</p>
+                <p><strong>4. Third-Party Services</strong><br />We use Stripe for payment processing. Your payment information is processed securely by Stripe and is subject to their privacy policy and terms of service.</p>
+                <p><strong>5. Contact Us</strong><br />If you have any questions about this Privacy Policy, please contact us at contact@prodeal.com.</p>
               </>
             }
           />
