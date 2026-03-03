@@ -21,12 +21,6 @@ const Logo = ({ theme = "light" }: { theme?: "light" | "dark" }) => {
 
   return (
     <div className="flex items-center gap-2.5">
-      <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-purple-500/25">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-          <path d="M6 4h7a5 5 0 0 1 0 10H6V4z" />
-          <path d="M6 14v6" />
-        </svg>
-      </div>
       <span className={`text-xl font-bold tracking-tight ${textColor}`}>
         Prodeal
       </span>
