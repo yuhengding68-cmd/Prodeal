@@ -61,6 +61,7 @@ const Navbar = ({ onOpenModal }: { onOpenModal: () => void }) => {
           <button
             className="md:hidden text-slate-900"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -752,7 +753,11 @@ const LegalModal = ({ isOpen, onClose, title, content }: { isOpen: boolean, onCl
       >
         <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
           <h3 className="text-2xl font-bold text-slate-900">{title}</h3>
-          <button onClick={onClose} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+          <button
+            onClick={onClose}
+            aria-label={`Close ${title}`}
+            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+          >
             <X size={24} />
           </button>
         </div>
@@ -879,7 +884,11 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
             <h3 className="text-2xl font-bold text-slate-900">Consultation Request</h3>
             <p className="text-sm text-slate-500 mt-1">Plan: <span className="font-semibold text-purple-600">{selectedPlan || 'Not selected'}</span></p>
           </div>
-          <button onClick={onClose} className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+          <button
+            onClick={onClose}
+            aria-label="Close consultation request"
+            className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+          >
             <X size={24} />
           </button>
         </div>
@@ -978,7 +987,7 @@ export default function App() {
     }
   }, []);
 
-  const openModal = (plan = '') => {
+  const openModal = (plan = 'Basic $39') => {
     setSelectedPlan(plan);
     setIsModalOpen(true);
   };
@@ -998,14 +1007,26 @@ export default function App() {
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-emerald-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 animate-in slide-in-from-top-4">
           <CheckCircle2 size={20} />
           <span className="font-medium">Payment successful! We'll be in touch shortly.</span>
-          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-emerald-200"><X size={16} /></button>
+          <button
+            onClick={() => setPaymentStatus(null)}
+            aria-label="Dismiss payment success message"
+            className="ml-2 hover:text-emerald-200"
+          >
+            <X size={16} />
+          </button>
         </div>
       )}
 
       {paymentStatus === 'canceled' && (
         <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-orange-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 animate-in slide-in-from-top-4">
           <span className="font-medium">Payment was canceled. You can try again when you're ready.</span>
-          <button onClick={() => setPaymentStatus(null)} className="ml-2 hover:text-orange-200"><X size={16} /></button>
+          <button
+            onClick={() => setPaymentStatus(null)}
+            aria-label="Dismiss payment canceled message"
+            className="ml-2 hover:text-orange-200"
+          >
+            <X size={16} />
+          </button>
         </div>
       )}
 

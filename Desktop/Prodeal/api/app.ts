@@ -43,6 +43,9 @@ app.post('/api/webhook', express.raw({ type: 'application/json' }), async (req, 
         // Update the record in Supabase
         try {
             const supabase = getSupabase();
+            if (!supabase) {
+                return res.send();
+            }
             const { error } = await supabase
                 .from('orders')
                 .update({ payment_status: 'paid' })
@@ -67,6 +70,8 @@ app.get("/api/health", (req, res) => {
 });
 
 app.post("/api/create-checkout-session", async (req, res) => {
+    let session: Stripe.Checkout.Session | null = null;
+
     try {
         const { plan, name, birthday, email, whatsapp, description } = req.body;
 
@@ -80,7 +85,7 @@ app.post("/api/create-checkout-session", async (req, res) => {
             productName = "Premium Sourcing";
         }
 
-        const session = await stripe.checkout.sessions.create({
+        session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: [
                 {
@@ -110,8 +115,8 @@ app.post("/api/create-checkout-session", async (req, res) => {
         });
 
         // Save pending order to Supabase
-        try {
-            const supabase = getSupabase();
+        const supabase = getSupabase();
+        if (supabase) {
             const { error } = await supabase.from('orders').insert({
                 name,
                 email,
@@ -123,14 +128,19 @@ app.post("/api/create-checkout-session", async (req, res) => {
                 payment_status: 'pending'
             });
             if (error) {
-                console.error('Error inserting pending order to Supabase:', error);
+                throw new Error(`Unable to save order: ${error.message}`);
             }
-        } catch (dbError) {
-            console.error('Exception inserting pending order to Supabase:', dbError);
         }
 
         res.json({ url: session.url });
     } catch (error: any) {
+        if (session?.id) {
+            try {
+                await getStripe().checkout.sessions.expire(session.id);
+            } catch (expireError) {
+                console.error("Failed to expire checkout session:", expireError);
+            }
+        }
         console.error("Stripe error:", error);
         res.status(500).json({ error: error.message || "An error occurred during checkout" });
     }

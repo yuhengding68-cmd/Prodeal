@@ -1,6 +1,16 @@
+import { existsSync } from "node:fs";
+import { resolve } from "node:path";
 import express from "express";
+import { config as loadEnv } from "dotenv";
 import { createServer as createViteServer } from "vite";
 import app from "./api/app.js";
+
+for (const file of [".env.local", ".env"]) {
+  const path = resolve(process.cwd(), file);
+  if (existsSync(path)) {
+    loadEnv({ path, override: false });
+  }
+}
 
 async function startServer() {
   const PORT = parseInt(process.env.PORT || '3000', 10);
