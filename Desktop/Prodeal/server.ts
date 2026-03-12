@@ -24,7 +24,10 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     // Production static file serving
-    app.use(express.static("dist"));
+    app.use(express.static("dist", {
+      dotfiles: "ignore",
+      index: false,
+    }));
     // Catch-all route for SPA
     app.get("*", (req, res) => {
       res.sendFile("dist/index.html", { root: "." });

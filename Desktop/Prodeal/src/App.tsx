@@ -868,6 +868,8 @@ const Pricing = ({ onSelectPlan }: { onSelectPlan: (plan: string) => void }) => 
 }
 
 const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onClose: () => void, selectedPlan: string }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
   return (
@@ -896,6 +898,8 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
         <div className="p-6 sm:p-8 overflow-y-auto">
           <form className="space-y-5" onSubmit={async (e) => {
             e.preventDefault();
+            if (isSubmitting) return;
+
             const formData = new FormData(e.currentTarget);
             const name = formData.get('name') as string;
             const birthday = formData.get('birthday') as string;
@@ -904,6 +908,7 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
             const description = formData.get('description') as string;
 
             try {
+              setIsSubmitting(true);
               const response = await fetch('/api/create-checkout-session', {
                 method: 'POST',
                 headers: {
@@ -919,7 +924,7 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
                 }),
               });
 
-              const data = await response.json();
+              const data = await response.json().catch(() => ({}));
               if (data.url) {
                 window.location.href = data.url;
               } else {
@@ -928,6 +933,8 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
             } catch (error) {
               console.error('Error:', error);
               alert('An error occurred. Please try again.');
+            } finally {
+              setIsSubmitting(false);
             }
           }}>
             <div>
@@ -956,8 +963,12 @@ const PaymentModal = ({ isOpen, onClose, selectedPlan }: { isOpen: boolean, onCl
             </div>
 
             <div className="pt-4">
-              <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-600/25 transition-all flex items-center justify-center gap-2">
-                Proceed to Payment <ArrowRight size={18} />
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-purple-600 hover:bg-purple-700 disabled:bg-purple-400 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl shadow-lg shadow-purple-600/25 transition-all flex items-center justify-center gap-2"
+              >
+                {isSubmitting ? 'Preparing checkout...' : 'Proceed to Payment'} {!isSubmitting && <ArrowRight size={18} />}
               </button>
               <p className="text-center text-xs text-slate-500 mt-4 flex items-center justify-center gap-1">
                 <ShieldCheck size={14} /> Secure payment processing
